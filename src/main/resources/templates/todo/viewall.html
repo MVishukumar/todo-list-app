@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Todo App</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<!--/*@thymesVar id="recipes" type="java.util.List"*/-->
+<!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
+<div class="container-fluid" style="margin-top: 20px">
+    <h1>Action list</h1>
+
+    <table class="table">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">DELETE</th>
+            <th scope="col">EDIT</th>
+        </tr>
+        <tr th:each="action : ${actions}">
+            <td scope="row" th:text="${action.id}">1</td>
+            <td th:text="${action.description}">Buy something from market</td>
+            <td>
+                <a th:href="@{/delete/{id}(id=${action.id})}"
+                   class="btn btn-primary">
+                    <i class="fas fa-user-times ml-2">Delete</i>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${action.id})}"
+                   class="btn btn-primary">
+                    <i class="fas fa-user-times ml-2">Edit</i>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <button><a href="/new">Add New Action</a></button>
+    <button><a href="/">Go back</a></button>
+</div>
+
+</body>
+</html>
